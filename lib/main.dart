@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:first_flutter/fancy_fab.dart';
+import 'package:first_flutter/common/gradient_app_bar.dart';
 void main() {
 //  Routes.initRouters();
   runApp(
@@ -110,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display4,
             ),
+            new GradientAppBar("treva"),
           ],
         ),
       ),

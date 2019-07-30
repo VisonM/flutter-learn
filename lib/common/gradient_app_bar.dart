@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GradientAppBar extends StatelessWidget{
@@ -21,6 +22,18 @@ class GradientAppBar extends StatelessWidget{
               fontSize: 36.0
           )
         ),
+      ),
+      decoration: new BoxDecoration(
+        gradient: new LinearGradient(
+          colors: [
+            const Color(0xFF3366FF),
+            const Color(0xFF00CCFF)
+          ],
+          begin: const FractionalOffset(0.0,0.0),
+          end: const FractionalOffset(1,0.0),
+          stops:[0.0,1],
+          tileMode: TileMode.clamp
+        )
       ),
     );
   }
