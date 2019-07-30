@@ -1,16 +1,14 @@
 # first_flutter
 
-A new Flutter project.
+This project is learn from [flutter_planets_tutorial](https://github.com/sergiandreplace/flutter_planets_tutorial), an excellent learning project,you can click this link directly .
 
+![image](https://github.com/VisonM/miniprogram/blob/master/gif/ezgif-1-84c837c7a346.gif)
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Make sure you have configured the flutter environment，and just run.
+```
+flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
+> if you build this project in ios,you can rename Bundle Identifier to avoid code sign authentication does not pass.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
