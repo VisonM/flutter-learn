@@ -3,6 +3,8 @@ import 'package:english_words/english_words.dart';
 import 'package:first_flutter/common/fancy_fab.dart';
 import 'package:first_flutter/common/gradient_app_bar.dart';
 import 'package:first_flutter/page/homepage.dart';
+import 'package:first_flutter/page/layout.dart';
+import 'package:first_flutter/page/lists/list_entry.dart';
 void main() {
 //  Routes.initRouters();
   runApp(
@@ -53,7 +55,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -64,10 +65,16 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void _decrementCounter(){
-    setState(() {
-      _counter --;
-    });
+  void _routerToLayout(param) {
+    print(param);
+    Navigator.of(context).push(new PageRouteBuilder(
+      pageBuilder: (_,__,___)=> new Layout(),
+    ));
+  }
+  void _routerToList() {
+    Navigator.of(context).push(new PageRouteBuilder(
+      pageBuilder: (_,__,___)=> new ListEntry(),
+    ));
   }
 
   @override
@@ -82,12 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: new Column(
         children: <Widget>[
-          new GradientAppBar("treva"),
+          new GradientAppBar("$wordPair-$_counter"),
+//          new Text('$_counter'),
           new HomePage()
         ],
       ),
-//      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-//      floatingActionButton: new FancyFab()
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: new FancyFab(onAddPressed:_incrementCounter,onLayoutPressed:_routerToLayout,onListPressed: _routerToList,tooltip: "Menu")
 
     );
   }

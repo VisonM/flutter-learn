@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 class FancyFab extends StatefulWidget{
-  final Function() onPressed;
+  final Function() onAddPressed;
+  final Function() onListPressed;
+  final Function(String) onLayoutPressed;
   final String tooltip;
   final IconData icon;
-  FancyFab({this.onPressed,this.tooltip,this.icon});
+  FancyFab({this.onAddPressed,this.onLayoutPressed,this.onListPressed,this.tooltip,this.icon});
 
   @override
   _FancyFabState createState() => _FancyFabState();
@@ -63,32 +65,35 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
     isOpened = !isOpened;
   }
 
-  Widget add(){
+  Container add(){
     return new Container(
       child: FloatingActionButton(
-        onPressed: null,
+        heroTag: "add",
+        onPressed: ()=>widget.onAddPressed(),
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
     );
   }
 
-  Widget image(){
+  Container assessment(){
     return new Container(
       child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Image',
-        child: Icon(Icons.image),
+        heroTag: "assessment",
+        onPressed: ()=>widget.onLayoutPressed("hey"),
+        tooltip: 'assessment',
+        child: Icon(Icons.assessment),
       ),
     );
   }
 
-  Widget inbox(){
+  Container list(){
     return new Container(
       child: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Inbox',
-        child: Icon(Icons.inbox),
+        heroTag: "view_list",
+        onPressed: ()=>widget.onListPressed(),
+        tooltip: 'view_list',
+        child: Icon(Icons.view_list),
       ),
     );
   }
@@ -98,7 +103,8 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
       backgroundColor: _buttonColor.value,
       onPressed: animate,
       foregroundColor: Colors.white,
-      tooltip: 'Toggle',
+      tooltip: widget.tooltip,
+      heroTag: "menu",
       child: AnimatedIcon(
         icon: AnimatedIcons.menu_close,
         progress: _animateIcon,
@@ -117,11 +123,11 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
         ),
         Transform(
           transform: Matrix4.translationValues(0.0, _translateButton.value * 2.0, 0.0),
-          child: image(),
+          child: assessment(),
         ),
         Transform(
           transform: Matrix4.translationValues(0.0, _translateButton.value * 1.0, 0.0),
-          child:inbox() ,
+          child:list() ,
         ),
         toggle()
       ],
