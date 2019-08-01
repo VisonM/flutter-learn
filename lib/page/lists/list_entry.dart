@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'contacts.dart';
+import 'bottom_bar.dart';
+import 'bottom_navigation.dart';
+import 'card.dart';
+import 'chip.dart';
+import 'fab_tab.dart';
 class ListEntry extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -17,7 +22,34 @@ class ListEntry extends StatelessWidget{
               child: new Text("route to contact"),
             ),
             RaisedButton(
-              onPressed: ()=>Navigator.pushNamed(context, "/contacts"),
+              onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_,__,___)=> new BottomBar(),
+              )),
+              child: new Text("route to bottom_bar"),
+            ),
+            RaisedButton(
+              onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_,__,___)=> new BottomNavigation(),
+              )),
+              child: new Text("route to bottom_navigation"),
+            ),
+            RaisedButton(
+              onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_,__,___)=> new FabTab(),
+              )),
+              child: new Text("route to Fab_Tab"),
+            ),
+            RaisedButton(
+              onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_,__,___)=> new CardsDemo(),
+              )),
+              child: new Text("route to card"),
+            ),
+            RaisedButton(
+              onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                pageBuilder: (_,__,___)=> new ChipDemo(),
+              )),
+              child: new Text("route to chips"),
             )
           ],
         ),

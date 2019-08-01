@@ -12,3 +12,4 @@ flutter run
 
 > if you build this project in ios,you can rename Bundle Identifier to avoid code sign authentication does not pass.
 
+
