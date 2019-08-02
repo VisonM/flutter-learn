@@ -5,6 +5,7 @@ import 'package:first_flutter/common/gradient_app_bar.dart';
 import 'package:first_flutter/page/homepage.dart';
 import 'package:first_flutter/page/layout.dart';
 import 'package:first_flutter/page/lists/list_entry.dart';
+import 'package:splashscreen/splashscreen.dart';
 void main() {
 //  Routes.initRouters();
   runApp(
@@ -50,10 +51,39 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  SplashScreenDemo createState() => SplashScreenDemo();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class SplashScreenDemo extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new SplashScreen(
+        seconds: 3,
+        navigateAfterSeconds: new MyHomeDemo(),
+        title: new Text('Vision_X',
+          style: new TextStyle(
+              color: Colors.black87,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              fontSize: 36.0
+          ),),
+        image: Image.asset(
+          'assets/img/splash_two.png',
+          fit: BoxFit.cover,
+        ),
+        backgroundColor: Colors.white,
+        styleTextUnderTheLoader: new TextStyle(),
+        photoSize: 100.0,
+        onClick: ()=>print("Flutter Egypt"),
+        loaderColor: Colors.black12
+    );
+  }
+}
+class MyHomeDemo extends StatefulWidget{
+  @override
+  _MyHomePageState createState()=>_MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomeDemo> {
   int _counter = 0;
   void _incrementCounter() {
     setState(() {

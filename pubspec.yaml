@@ -28,6 +28,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  splashscreen:
 
 
 
@@ -88,3 +89,5 @@ flutter:
     - assets/img/ic_distance.png
     - assets/img/ic_gravity.png
     - assets/img/vision.jpg
+    - assets/img/splash_two.png
+    - assets/img/splash.png
