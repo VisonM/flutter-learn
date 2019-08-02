@@ -63,23 +63,23 @@ class _FabTabState extends State<FabTab> with SingleTickerProviderStateMixin{
   }
   Widget buildTabView(_Page page) {
     return Builder(
-        builder: (BuildContext context) {
-          return Container(
-            key: ValueKey<String>(page.label),
-            padding: const EdgeInsets.fromLTRB(48.0, 48.0, 48.0, 96.0),
-            child: Card(
-              child: Center(
-                child: Text(page.label,
-                  style: TextStyle(
-                    color: page.labelColor,
-                    fontSize: 32.0,
-                  ),
-                  textAlign: TextAlign.center,
+      builder: (BuildContext context) {
+        return Container(
+          key: ValueKey<String>(page.label),
+          padding: const EdgeInsets.fromLTRB(48.0, 48.0, 48.0, 96.0),
+          child: Card(
+            child: Center(
+              child: Text(page.label,
+                style: TextStyle(
+                  color: page.labelColor,
+                  fontSize: 32.0,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-          );
-        }
+          ),
+        );
+      }
     );
   }
 

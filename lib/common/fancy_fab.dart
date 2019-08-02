@@ -65,11 +65,18 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
     isOpened = !isOpened;
   }
 
+  hide(){
+    _animationController.reverse();
+    isOpened=false;
+  }
   Container add(){
     return new Container(
       child: FloatingActionButton(
         heroTag: "add",
-        onPressed: ()=>widget.onAddPressed(),
+        onPressed: (){
+          this.hide();
+          widget.onAddPressed();
+        },
         tooltip: 'Add',
         child: Icon(Icons.add),
       ),
@@ -80,7 +87,10 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
     return new Container(
       child: FloatingActionButton(
         heroTag: "assessment",
-        onPressed: ()=>widget.onLayoutPressed("hey"),
+        onPressed: (){
+          this.hide();
+          widget.onLayoutPressed("hey");
+        },
         tooltip: 'assessment',
         child: Icon(Icons.assessment),
       ),
@@ -91,7 +101,10 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
     return new Container(
       child: FloatingActionButton(
         heroTag: "view_list",
-        onPressed: ()=>widget.onListPressed(),
+        onPressed: (){
+          this.hide();
+          widget.onListPressed();
+        },
         tooltip: 'view_list',
         child: Icon(Icons.view_list),
       ),
