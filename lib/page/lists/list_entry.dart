@@ -8,6 +8,7 @@ import 'fab_tab.dart';
 import 'scrollable_tab.dart';
 import 'back_drop.dart';
 import 'ios_refresh.dart';
+import 'filter_menu.dart';
 class ListEntry extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,14 @@ class ListEntry extends StatelessWidget{
                   pageBuilder: (_,__,___)=> new CupertinoRefreshControlDemo(),
                 )),
                 child: new Text("route to ios_refresh"),
+              ),
+              RaisedButton(
+                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
+                  pageBuilder: (_,__,___)=> new FilterMenuDemo(),
+                )),
+                child: new Text("route to filter_menu"),
               )
+
             ],
           ),
         )
