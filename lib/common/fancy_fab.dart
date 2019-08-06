@@ -92,7 +92,7 @@ class _FancyFabState extends State<FancyFab> with SingleTickerProviderStateMixin
           widget.onLayoutPressed("hey");
         },
         tooltip: 'assessment',
-        child: Icon(Icons.assessment),
+        child: Icon(Icons.music_note),
       ),
     );
   }

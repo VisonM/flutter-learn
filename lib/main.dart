@@ -6,6 +6,7 @@ import 'package:first_flutter/page/homepage.dart';
 import 'package:first_flutter/page/layout.dart';
 import 'package:first_flutter/page/lists/list_entry.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:first_flutter/page/music/music_rank.dart';
 void main() {
 //  Routes.initRouters();
   runApp(
@@ -98,7 +99,7 @@ class _MyHomePageState extends State<MyHomeDemo> {
   void _routerToLayout(param) {
     print(param);
     Navigator.of(context).push(new PageRouteBuilder(
-      pageBuilder: (_,__,___)=> new Layout(),
+      pageBuilder: (_,__,___)=> new MusicRank(),
     ));
   }
   void _routerToList() {
