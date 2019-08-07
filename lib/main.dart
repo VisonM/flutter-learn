@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        fontFamily: "Gochi Hand"
       ),
       home: MyHomePage(title: 'treva'),
     );

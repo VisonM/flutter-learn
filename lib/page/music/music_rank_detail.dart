@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:flutter/services.dart';
+
 class MusicRank extends StatefulWidget{
   final int id;
   MusicRank(this.id);
@@ -13,6 +15,8 @@ class MusicRank extends StatefulWidget{
 class MusicRankState extends State<MusicRank> {
   List _rankData=[];
   String title="排行榜";
+  String coverImgUrl="";
+  final double _appBarHeight = 256.0;
   _getHotMusicRank() async{
     print(widget.id);
     var url = 'http://192.168.3.81:3000/playlist/detail?id=${widget.id}';
@@ -35,6 +39,7 @@ class MusicRankState extends State<MusicRank> {
     setState(() {
       _rankData = _result["tracks"];
       title=_result["name"];
+      coverImgUrl= _result["coverImgUrl"];
     });
   }
   @override
@@ -169,14 +174,65 @@ class MusicRankState extends State<MusicRank> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: Text("$title"),
+    return Theme(
+      data: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.blueGrey,
+        fontFamily: "Gochi Hand",
+        platform: Theme.of(context).platform,
       ),
-      body: new ListView(
-        children:  _rankData.isEmpty ?  _loading() :_renderRankItem()
-//          children:   _loading()
-      )
+      child: new Scaffold(
+          body: new CustomScrollView(
+            slivers: <Widget>[
+              SliverAppBar(
+                expandedHeight: _appBarHeight,
+                flexibleSpace:FlexibleSpaceBar(
+                  title: Text('$title'),
+                  background: Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      Image.network(
+                        coverImgUrl,
+                        fit: BoxFit.cover,
+                        height: _appBarHeight,
+                      ),
+                      // This gradient ensures that the toolbar icons are distinct
+                      // against the background image.
+                      const DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.0, -1.0),
+                            end: Alignment(0.0, -0.4),
+                            colors: <Color>[Color(0x60000000), Color(0x00000000)],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                pinned: true,
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.linear_scale,color: Colors.white,),
+                    tooltip: 'more',
+                  ),
+                ],
+              ),
+              SliverList(
+                delegate: SliverChildListDelegate(<Widget>[
+                  AnnotatedRegion<SystemUiOverlayStyle>(
+                    value: SystemUiOverlayStyle.dark,
+                    child: new Container(),
+                  ),
+                  new Column(
+                    children: _renderRankItem(),
+                  )
+                ]),
+              )
+            ],
+//        children:  _rankData.isEmpty ?  _loading() :_renderRankItem()
+          )
+      ),
     );
   }
 }

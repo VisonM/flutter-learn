@@ -79,6 +79,14 @@ flutter:
           weight: 600
         - asset: assets/fonts/Poppins-Regular.ttf
           weight: 400
+
+    - family: Neucha
+      fonts:
+        - asset: assets/fonts/Neucha-Regular.ttf
+
+    - family: Gochi Hand
+      fonts:
+        - asset: assets/fonts/GochiHand-Regular.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

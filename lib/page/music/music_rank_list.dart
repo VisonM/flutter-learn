@@ -68,6 +68,7 @@ class MusicRankListState extends State<MusicRankList>{
             style: TextStyle(
               color: Colors.white,
               fontSize: 12,
+              fontFamily: "Gochi Hand"
             ),
           ),
         )
