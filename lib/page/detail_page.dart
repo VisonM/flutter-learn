@@ -3,7 +3,6 @@ import 'package:first_flutter/model/planet.dart';
 import 'package:first_flutter/style/text_style.dart';
 import 'package:first_flutter/components/planet_item.dart';
 import 'package:first_flutter/common/separator.dart';
-import 'package:flutter/material.dart' as prefix0;
 class DetailPage extends StatelessWidget{
   final Planet planet;
   DetailPage(this.planet);

@@ -3,10 +3,11 @@ import 'package:english_words/english_words.dart';
 import 'package:first_flutter/common/fancy_fab.dart';
 import 'package:first_flutter/common/gradient_app_bar.dart';
 import 'package:first_flutter/page/homepage.dart';
-import 'package:first_flutter/page/layout.dart';
+//import 'package:first_flutter/page/layout.dart';
 import 'package:first_flutter/page/lists/list_entry.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:first_flutter/page/music/music_rank.dart';
+//import 'package:first_flutter/page/music/music_rank_detail.dart';
+import 'package:first_flutter/page/music/music_rank_list.dart';
 void main() {
 //  Routes.initRouters();
   runApp(
@@ -99,7 +100,7 @@ class _MyHomePageState extends State<MyHomeDemo> {
   void _routerToLayout(param) {
     print(param);
     Navigator.of(context).push(new PageRouteBuilder(
-      pageBuilder: (_,__,___)=> new MusicRank(),
+      pageBuilder: (_,__,___)=> new MusicRankList(),
     ));
   }
   void _routerToList() {

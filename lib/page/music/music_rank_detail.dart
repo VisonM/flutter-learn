@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:first_flutter/common/gradient_app_bar.dart';
 import 'dart:io';
 import 'dart:convert';
 
 class MusicRank extends StatefulWidget{
+  final int id;
+  MusicRank(this.id);
   @override
   MusicRankState createState()=>MusicRankState();
 }
 
 
 class MusicRankState extends State<MusicRank> {
-
   List _rankData=[];
+  String title="排行榜";
   _getHotMusicRank() async{
-    var url = 'http://192.168.3.81:3000/top/list?idx=1';
+    print(widget.id);
+    var url = 'http://192.168.3.81:3000/playlist/detail?id=${widget.id}';
     var httpClient = new HttpClient();
     Map _result=new Map();
     try{
@@ -32,6 +34,7 @@ class MusicRankState extends State<MusicRank> {
     if (!mounted) return;
     setState(() {
       _rankData = _result["tracks"];
+      title=_result["name"];
     });
   }
   @override
@@ -48,28 +51,15 @@ class MusicRankState extends State<MusicRank> {
     }).toList();
   }
 
-  List<Widget> _singersAndAlbum(List singerList, album){
-    return singerList.map((singerItem){
-      var index = singerList.indexOf(singerItem);
-      return index != singerList.length-1?
-        new Text(
-          "${singerItem["name"]}/",
-          style: new TextStyle(
-            color: Colors.grey,
-          ),
-        )
-        :
-        new Flexible(
-          child: new Text(
-            "${singerItem["name"]} — ${album["name"]}",
-            overflow: TextOverflow.ellipsis,
-            style: new TextStyle(
-              color: Colors.grey,
-            ),
-          ),
-        );
-
-    }).toList();
+   _singersAndAlbumText(List singerList, album){
+     String str="";
+     singerList.forEach((singerItem) {
+       var index = singerList.indexOf(singerItem);
+       index != singerList.length - 1 ?
+       str += "${singerItem["name"]}/" :
+       str += "${singerItem["name"]} — ${album["name"]}";
+     });
+    return str;
   }
 
   Widget _rankNumber(index){
@@ -132,7 +122,17 @@ class MusicRankState extends State<MusicRank> {
                     ],
                   ),
                   new Row(
-                    children: _singersAndAlbum(item["ar"],item["al"]),
+                    children: <Widget>[
+                      new Flexible(
+                      child: new Text(
+                        "${_singersAndAlbumText(item["ar"],item["al"])}",
+                          overflow: TextOverflow.ellipsis,
+                          style: new TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
@@ -171,7 +171,7 @@ class MusicRankState extends State<MusicRank> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text("云音乐热歌榜"),
+        title: Text("$title"),
       ),
       body: new ListView(
         children:  _rankData.isEmpty ?  _loading() :_renderRankItem()
