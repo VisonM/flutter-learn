@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
-
+import './play.dart';
 import 'package:flutter/services.dart';
 
 class MusicRank extends StatefulWidget{
@@ -47,6 +47,13 @@ class MusicRankState extends State<MusicRank> {
     super.initState();
     _getHotMusicRank();
   }
+
+  void _navigatorToPlay(int id){
+    Navigator.of(context).push(new MaterialPageRoute(
+      builder: (context)=>new Play(id)
+    ));
+  }
+
   List<Widget> _renderRankItem(){
     return _rankData.map((item){
       return new Padding(
@@ -99,29 +106,30 @@ class MusicRankState extends State<MusicRank> {
     var index=_rankData.indexOf(item)+1;
     return new Padding(
       padding: EdgeInsets.all(5.0),
-      child:  new Row(
-        children: <Widget>[
-          _rankNumber(index),
-          new Expanded(
-            child: new Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
-              child: new Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  new Row(
-                    children: <Widget>[
-                      new Flexible(
-                        child: new Text(
-                          item["name"],
-                          overflow: TextOverflow.ellipsis,
-                          style: new TextStyle(
-                            fontSize: 20,
-                            color: Colors.black87,
+      child:  new InkWell(
+        child: new Row(
+          children: <Widget>[
+            _rankNumber(index),
+            new Expanded(
+              child: new Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
+                child: new Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    new Row(
+                      children: <Widget>[
+                        new Flexible(
+                          child: new Text(
+                            item["name"],
+                            overflow: TextOverflow.ellipsis,
+                            style: new TextStyle(
+                              fontSize: 20,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
-                      ),
-                      item['alia'].isEmpty?
+                        item['alia'].isEmpty?
                         new Container():
                         new Flexible(
                           child: new Text(
@@ -136,35 +144,37 @@ class MusicRankState extends State<MusicRank> {
                           ),
                         )
 
-                    ],
-                  ),
-                  new Row(
-                    children: <Widget>[
-                      new Flexible(
-                      child: new Text(
-                        "${_singersAndAlbumText(item["ar"],item["al"])}",
-                          overflow: TextOverflow.ellipsis,
-                          style: new TextStyle(
-                            color: Colors.grey,
+                      ],
+                    ),
+                    new Row(
+                      children: <Widget>[
+                        new Flexible(
+                          child: new Text(
+                            "${_singersAndAlbumText(item["ar"],item["al"])}",
+                            overflow: TextOverflow.ellipsis,
+                            style: new TextStyle(
+                              color: Colors.grey,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          item['mv'] !=0 ?
+            item['mv'] !=0 ?
             new Padding(
               padding: EdgeInsets.only(right: 10.0),
               child: new Icon(Icons.videocam,color: Colors.black26,),
             )
-            :
+                :
             new Container(),
-          new Icon(Icons.linear_scale,color: Colors.black26,)
-        ],
-      ),
+            new Icon(Icons.linear_scale,color: Colors.black26,)
+          ],
+        ),
+        onTap: (){_navigatorToPlay(item["id"]);},
+      )
     );
   }
   List<Widget> _loading() {
