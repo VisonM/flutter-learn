@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'dart:io';
 import 'dart:convert';
 import './music_rank_detail.dart';
@@ -34,8 +35,8 @@ class MusicRankListState extends State<MusicRankList>{
   }
 
   _navigatorToDetail(int id){
-    Navigator.of(context).push(new PageRouteBuilder(
-      pageBuilder: (_,__,___)=> new MusicRank(id),
+    Navigator.of(context).push(new MaterialPageRoute(
+      builder: (context)=> new MusicRank(id),
     ));
   }
   @override
@@ -51,14 +52,18 @@ class MusicRankListState extends State<MusicRankList>{
           width: MediaQuery.of(context).size.width * 0.3,
           height: MediaQuery.of(context).size.width * 0.3,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image:NetworkImage(url),
-              fit: BoxFit.cover,
-            ),
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),
             ),
           ),
+          child: new ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: FadeInImage.memoryNetwork(
+              fit: BoxFit.cover,
+              placeholder: kTransparentImage,
+              image: url,
+            ),
+          )
         ),
         new Positioned(
           left: 5,
@@ -67,8 +72,7 @@ class MusicRankListState extends State<MusicRankList>{
             str,
             style: TextStyle(
               color: Colors.white,
-              fontSize: 12,
-              fontFamily: "Gochi Hand"
+              fontSize: 12
             ),
           ),
         )
@@ -190,21 +194,37 @@ class MusicRankListState extends State<MusicRankList>{
       ],
     );
   }
+  Widget _loading() {
+    return new Container(
+      height: 300,
+      child: new Center(
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircularProgressIndicator(strokeWidth: 1.0,),
+            new Text("正在加载",style:new TextStyle(color: Colors.blueAccent)),
+          ],
+        )
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("排行榜"),
       ),
-      body: new ListView(
-        children: <Widget>[
-          _buildCloudRankList(),
-          new Divider(
-            height: 30,
+      body:_cloudRankList.isEmpty?
+          _loading()
+          :new ListView(
+            children: <Widget>[
+              _buildCloudRankList(),
+              new Divider(
+                height: 30,
+              ),
+              _buildGlobalRankList(),
+            ],
           ),
-          _buildGlobalRankList(),
-        ],
-      ),
     );
   }
 }

@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   english_words: ^3.1.0
   audioplayers: ^0.13.1
+  transparent_image: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +88,18 @@ flutter:
     - family: Gochi Hand
       fonts:
         - asset: assets/fonts/GochiHand-Regular.ttf
+
+    - family: Long Cang
+      fonts:
+        - asset: assets/fonts/LongCang-Regular.ttf
+
+    - family: Noto Serif SC
+      fonts:
+        - asset: assets/fonts/NotoSerifTC-Regular.otf
+
+    - family: Noto Sans SC
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.otf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

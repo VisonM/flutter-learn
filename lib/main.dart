@@ -32,7 +32,13 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-        fontFamily: "Gochi Hand"
+        fontFamily: "Noto Sans SC",
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android:CupertinoPageTransitionsBuilder(),
+            TargetPlatform.iOS:CupertinoPageTransitionsBuilder(),
+          }
+        )
       ),
       home: MyHomePage(title: 'treva'),
     );
@@ -100,13 +106,13 @@ class _MyHomePageState extends State<MyHomeDemo> {
   }
   void _routerToLayout(param) {
     print(param);
-    Navigator.of(context).push(new PageRouteBuilder(
-      pageBuilder: (_,__,___)=> new MusicRankList(),
+    Navigator.of(context).push(new MaterialPageRoute(
+      builder: (context)=> new MusicRankList(),
     ));
   }
   void _routerToList() {
-    Navigator.of(context).push(new PageRouteBuilder(
-      pageBuilder: (_,__,___)=> new ListEntry(),
+    Navigator.of(context).push(new MaterialPageRoute(
+      builder: (context)=> new ListEntry(),
     ));
   }
 

@@ -92,10 +92,8 @@ class PlanetItem extends StatelessWidget{
       ),
     );
     return new GestureDetector(
-      onTap:horizontal? ()=> Navigator.of(context).push(new PageRouteBuilder(
-        pageBuilder: (_,__,___)=> new DetailPage(planet),
-        transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-            new FadeTransition(opacity: animation, child: child)
+      onTap:horizontal? ()=> Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context)=> new DetailPage(planet),
       )):null,
       child: new Container(
         //      margin: EdgeInsets.only(

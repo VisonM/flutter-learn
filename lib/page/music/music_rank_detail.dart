@@ -66,6 +66,18 @@ class MusicRankState extends State<MusicRank> {
      });
     return str;
   }
+  MaterialColor _matchColor(num){
+    switch(num){
+      case 1:
+        return Colors.red;
+      case 2:
+        return Colors.pink;
+      case 3:
+        return Colors.blue;
+      default:
+        return Colors.blueGrey;
+    }
+  }
 
   Widget _rankNumber(index){
     var rankNum=index<10 ? "0$index" : "$index";
@@ -74,10 +86,10 @@ class MusicRankState extends State<MusicRank> {
       child: new Text(
         rankNum,
         style: TextStyle(
-            color: index<=3?Colors.red:Colors.grey,
+            color: _matchColor(index),
             fontSize: 16,
+            fontFamily: index<=3?"Gochi Hand":Theme.of(context).textTheme.title.fontFamily,
             fontWeight: index<=3?FontWeight.bold:FontWeight.normal,
-            fontFamily: "Poppins"
         ),
       ),
     );
@@ -178,7 +190,7 @@ class MusicRankState extends State<MusicRank> {
       data: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blueGrey,
-        fontFamily: "Gochi Hand",
+        fontFamily: Theme.of(context).textTheme.title.fontFamily,
         platform: Theme.of(context).platform,
       ),
       child: new Scaffold(

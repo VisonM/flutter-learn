@@ -12,6 +12,11 @@ import 'filter_menu.dart';
 class ListEntry extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    void _navigatorRouter(page){
+      Navigator.of(context).push(new MaterialPageRoute(
+        builder: (context)=> page,
+      ));
+    }
     return new Scaffold(
       appBar: new AppBar(
         title: Text("hey,flutter!"),
@@ -22,63 +27,43 @@ class ListEntry extends StatelessWidget{
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new ContactsDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new ContactsDemo()),
                 child: new Text("route to contact"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new BottomBar(),
-                )),
+                onPressed:()=> _navigatorRouter(new BottomBar()),
                 child: new Text("route to bottom_bar"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new BottomNavigation(),
-                )),
+                onPressed: ()=>_navigatorRouter(new BottomNavigation()),
                 child: new Text("route to bottom_navigation"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new FabTab(),
-                )),
+                onPressed: ()=> _navigatorRouter(new FabTab()),
                 child: new Text("route to Fab_Tab"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new CardsDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new CardsDemo()),
                 child: new Text("route to card"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new ChipDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new ChipDemo()),
                 child: new Text("route to chips"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new ScrollableTabDemo(),
-                )),
+                onPressed: ()=>_navigatorRouter(new ScrollableTabDemo()),
                 child: new Text("route to scrollable_tab"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new BackDropDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new BackDropDemo()),
                 child: new Text("route to back_drop"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new CupertinoRefreshControlDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new CupertinoRefreshControlDemo()),
                 child: new Text("route to ios_refresh"),
               ),
               RaisedButton(
-                onPressed: ()=> Navigator.of(context).push(new PageRouteBuilder(
-                  pageBuilder: (_,__,___)=> new FilterMenuDemo(),
-                )),
+                onPressed: ()=> _navigatorRouter(new FilterMenuDemo()),
                 child: new Text("route to filter_menu"),
               )
 
