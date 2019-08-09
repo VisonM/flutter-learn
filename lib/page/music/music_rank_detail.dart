@@ -204,6 +204,7 @@ class MusicRankState extends State<MusicRank> {
         platform: Theme.of(context).platform,
       ),
       child: new Scaffold(
+
           body: new CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
@@ -213,11 +214,16 @@ class MusicRankState extends State<MusicRank> {
                   background: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-                      Image.network(
-                        coverImgUrl,
-                        fit: BoxFit.cover,
-                        height: _appBarHeight,
-                      ),
+                      coverImgUrl == ""?
+                          Image.asset(
+                            "assets/img/vision.jpg",
+                            fit: BoxFit.cover,
+                          ):
+                          Image.network(
+                            coverImgUrl,
+                            fit: BoxFit.cover,
+                            height: _appBarHeight,
+                          ),
                       // This gradient ensures that the toolbar icons are distinct
                       // against the background image.
                       const DecoratedBox(
